@@ -46,8 +46,16 @@
     <footer class="section-shell"><span>HERM · 2026</span><a href="assets/HERM.pdf" target="_blank">Paper ↗</a><a href="https://github.com/Wx-Fu/HERM" target="_blank" rel="noreferrer">GitHub ↗</a></footer>
     <script>
       const modelNames = {'avatar_forcing.mp4':'Avatar Forcing','dystream.mp4':'DyStream','liveavatar.mp4':'LiveAvatar','omniavatar.mp4':'OmniAvatar','omniavatar_14b.mp4':'OmniAvatar-14B','stableavatar_fixed.mp4':'StableAvatar','herm.mp4':'HERM'};
-      const allModels = ['avatar_forcing.mp4','dystream.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4','herm.mp4'];
-      const sequences = [{id:'05',models:allModels},{id:'07',models:allModels},{id:'01',models:allModels},{id:'02',models:allModels},{id:'03',models:allModels},{id:'04',models:['liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4','herm.mp4']},{id:'06',models:['avatar_forcing.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4','herm.mp4']}];
+      const allModels = ['herm.mp4','avatar_forcing.mp4','dystream.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4'];
+      const sequences = [
+        {folderId:'05',displayId:'1',models:allModels},
+        {folderId:'07',displayId:'2',models:allModels},
+        {folderId:'01',displayId:'3',models:allModels},
+        {folderId:'02',displayId:'4',models:allModels},
+        {folderId:'03',displayId:'5',models:allModels},
+        {folderId:'04',displayId:'6',models:['herm.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4']},
+        {folderId:'06',displayId:'7',models:['herm.mp4','avatar_forcing.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4']}
+      ];
       const list = document.getElementById('comparison-list');
       const playbackGroups = [];
       const stopOtherGroups = (currentGroup) => {
@@ -59,9 +67,9 @@
         });
       };
       sequences.forEach((sequence) => {
-        const folder = `assets/comparisons/sequence-${sequence.id}`;
+        const folder = `assets/comparisons/sequence-${sequence.folderId}`;
         const card = document.createElement('article'); card.className = 'sequence-card';
-        card.innerHTML = `<div class="sequence-meta"><span>Sequence ${sequence.id}</span><p>Shared interaction context</p></div><div class="sequence-layout"><figure class="partner-card"><div class="media-wrap"><video class="partner-video" controls loop playsinline preload="metadata" src="${folder}/partner.mp4"></video></div><figcaption><span>Input</span><strong>Interaction partner</strong></figcaption></figure><section class="output-card" aria-label="Generated responses for sequence ${sequence.id}"><div class="track-header"><span>Generated responses</span><small>scroll →</small></div><div class="model-track">${sequence.models.map((file) => `<figure class="model-slide ${file === 'herm.mp4' ? 'ours' : ''}"><div class="media-wrap"><video class="model-output" controls loop playsinline preload="metadata" src="${folder}/${file}"></video></div><figcaption><span>Output</span><strong>${modelNames[file]}</strong></figcaption></figure>`).join('')}</div></section></div>`;
+        card.innerHTML = `<div class="sequence-meta"><span>Sequence ${sequence.displayId}</span><p>Shared interaction context</p></div><div class="sequence-layout"><figure class="partner-card"><div class="media-wrap"><video class="partner-video" controls loop playsinline preload="metadata" src="${folder}/partner.mp4"></video></div><figcaption><span>Input</span><strong>Interaction partner</strong></figcaption></figure><section class="output-card" aria-label="Generated responses for sequence ${sequence.displayId}"><div class="track-header"><span>Generated responses</span><small>scroll →</small></div><div class="model-track">${sequence.models.map((file) => `<figure class="model-slide ${file === 'herm.mp4' ? 'ours' : ''}"><div class="media-wrap"><video class="model-output" controls loop playsinline preload="metadata" src="${folder}/${file}"></video></div><figcaption><span>Output</span><strong>${modelNames[file]}</strong></figcaption></figure>`).join('')}</div></section></div>`;
         const partner = card.querySelector('.partner-video');
         const outputs = [...card.querySelectorAll('.model-output')];
         const group = { partner, outputs, activeOutput: null };
