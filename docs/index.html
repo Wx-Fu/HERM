@@ -3,51 +3,91 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="HERM: Hierarchical Event-Routed Memory for context-conditioned interactive avatar generation." />
-    <title>HERM | Context-Conditioned Interactive Avatar Generation</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2309162d'/%3E%3Cpath d='M16 17h8v11h16V17h8v30h-8V35H24v12h-8z' fill='%2388f4e1'/%3E%3C/svg%3E" />
+    <meta name="description" content="HERM: Hierarchical Event-Routed Memory for Context-Conditioned Interactive Avatar Generation." />
+    <title>HERM | Interactive Avatar Generation</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c4a6e'/%3E%3Cpath d='M16 17h8v11h16V17h8v30h-8V35H24v12h-8z' fill='%23f59e0b'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="overrides.css" />
   </head>
   <body>
-    <div class="glow glow-left"></div><div class="glow glow-right"></div>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="HERM home"><span>H</span> HERM</a>
-      <nav aria-label="Primary navigation"><a href="#method">Method</a><a href="#comparisons">Comparisons</a><a href="#paper">Paper</a></nav>
-      <a class="nav-button" href="https://github.com/Wx-Fu/HERM" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+      <nav aria-label="Primary navigation"><a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#demos">Demos</a></nav>
+      <a class="header-link" href="https://github.com/Wx-Fu/HERM" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
     </header>
     <main id="top">
-      <section class="hero shell">
+      <section class="hero section-shell">
         <div class="hero-copy">
           <p class="eyebrow">Streaming interactive avatar generation</p>
-          <h1>Give each new response a <em>relevant past.</em></h1>
-          <p class="lead">HERM turns a growing conversation into bounded interaction memory, then retrieves the events that help an avatar respond to the present rather than repeat a generic motion.</p>
+          <h1>HERM</h1>
+          <p class="hero-title">Hierarchical Event-Routed Memory for<br class="desktop-break" /> Context-Conditioned Interactive Avatar Generation</p>
           <p class="authors">Wenxin Fu · Zhengkun Tian · Ye Bai · Zhao You · Shidong Shang · Yingming Gao · Ya Li</p>
-          <div class="actions"><a class="button primary" href="#comparisons">Watch comparisons <span>↓</span></a><a class="button quiet" href="assets/HERM.pdf" target="_blank">Read paper <span>↗</span></a></div>
-        </div>
-        <div class="memory-stage" aria-label="Conceptual illustration of HERM memory">
-          <p class="stage-label">current conditions</p><div class="query"><i></i> Query</div><div class="connector"></div>
-          <div class="readout"><span>bounded readout</span><div class="tokens"><b class="a"></b><b class="l"></b><b class="l"></b><b class="e"></b><b class="e"></b><b class="s"></b></div><strong>Relevant interaction events</strong><small>audio · state · recent motion</small></div>
-          <div class="down">↓</div><div class="generator"><i></i> Streaming generator</div>
-          <div class="bank"><span>event memory</span><div><b class="a"></b><b class="a"></b><b class="a"></b></div><div><b class="l"></b><b class="l"></b><b class="l"></b><b class="l"></b></div><div><b class="e"></b><b class="e"></b><b class="e"></b></div><div><b class="s"></b><b class="s"></b></div><small>updated after each completed chunk</small></div>
+          <div class="actions"><a class="button button-primary" href="assets/HERM.pdf" target="_blank">Paper <span>↗</span></a><a class="button button-secondary" href="#demos">Watch demos <span>↓</span></a></div>
         </div>
       </section>
-      <section class="statement shell"><p>Immediate audio can support a plausible response. HERM makes it possible to select a response that also fits the ongoing interaction and the avatar's expressive pattern.</p></section>
-      <section id="method" class="method shell"><div class="heading"><p class="eyebrow">Method</p><h2>A memory that stays useful as the stream grows.</h2></div><div class="method-grid"><article><span>01</span><h3>Structure the past</h3><p>Completed chunks are organized as multimodal interaction events rather than an undifferentiated history.</p></article><article><span>02</span><h3>Read by condition</h3><p>Current audio, speaking/listening state, and recent motion retrieve trajectories relevant to the next chunk.</p></article><article><span>03</span><h3>Write with control</h3><p>Generated content remains locally available, while reliability-controlled admission protects long-term memory.</p></article></div></section>
-      <section id="comparisons" class="comparisons shell"><div class="comparison-heading"><div><p class="eyebrow">Comparison demos</p><h2>Same interaction context.<br />Different visual response.</h2></div><p>Each row shows the partner context alongside a baseline and HERM. Videos are presented independently to preserve their original playback.</p></div>
-        <div class="comparison-row"><div class="sequence-tag">Sequence A</div><div class="compare-grid"><figure><div class="video-frame"><video controls muted loop playsinline preload="metadata"><source src="assets/compare-a-partner.mp4" type="video/mp4" /></video></div><figcaption><span>Input</span><strong>Interaction partner</strong></figcaption></figure><figure><div class="video-frame"><video controls muted loop playsinline preload="metadata"><source src="assets/compare-a-baseline.mp4" type="video/mp4" /></video></div><figcaption><span>Baseline</span><strong>StableAvatar</strong></figcaption></figure><figure class="ours"><div class="video-frame"><video controls muted loop playsinline preload="metadata"><source src="assets/own-demo-03.mp4" type="video/mp4" /></video></div><figcaption><span>Ours</span><strong>HERM</strong></figcaption></figure></div></div>
-        <div class="comparison-row"><div class="sequence-tag">Sequence B</div><div class="compare-grid"><figure><div class="video-frame"><video controls muted loop playsinline preload="metadata"><source src="assets/compare-b-partner.mp4" type="video/mp4" /></video></div><figcaption><span>Input</span><strong>Interaction partner</strong></figcaption></figure><figure><div class="video-frame"><video controls muted loop playsinline preload="metadata"><source src="assets/compare-b-baseline.mp4" type="video/mp4" /></video></div><figcaption><span>Baseline</span><strong>StableAvatar</strong></figcaption></figure><figure class="ours"><div class="video-frame"><video controls muted loop playsinline preload="metadata"><source src="assets/compare-b-herm.mp4" type="video/mp4" /></video></div><figcaption><span>Ours</span><strong>HERM</strong></figcaption></figure></div></div>
+      <section id="abstract" class="abstract section-shell">
+        <div class="section-kicker"><span>01</span><p>Abstract</p></div>
+        <p>Interactive streaming avatar generation requires natural and continuous responses to a conversational partner. However, current chunk-wise generators rely mainly on current audio and may produce generic or repetitive motions with limited use of earlier interaction. Keeping all previous chunks is costly, while compression alone neither identifies which behaviors matter now nor ensures that retained history affects generation. We view a streaming conversation as a sequence of multimodal interaction events, in which an appropriate response depends on both the current partner signal and relevant past events. Based on this view, we propose Hierarchical Event-Routed Memory (HERM) for history-conditioned interactive avatar generation. HERM continuously organizes completed interaction events into a bounded memory and retrieves relevant trajectories according to the current audio, speaking/listening state, and recent motion. Experiments examine whether retrieved trajectories affect the next chunk and thereby improve contextual appropriateness, reduce repetitive behavior, and preserve the avatar's characteristic expressive behavior.</p>
       </section>
-      <section id="paper" class="paper shell"><div><p class="eyebrow">Paper</p><h2>Hierarchical Event-Routed Memory for Context-Conditioned Interactive Avatar Generation</h2><p>We study which past interaction events should influence the next visual response, and show that structured, condition-guided memory can improve contextual fit while reducing repetitive motion.</p><div class="actions"><a class="button primary" href="assets/HERM.pdf" target="_blank">Download PDF <span>↓</span></a><a class="button quiet" href="https://github.com/Wx-Fu/HERM" target="_blank" rel="noreferrer">View repository <span>↗</span></a></div></div><aside><label>Citation</label><pre>@article{fu2026herm,
-  title={HERM: Hierarchical Event-Routed Memory for
-    Context-Conditioned Interactive Avatar Generation},
-  author={Fu, Wenxin and Tian, Zhengkun and Bai, Ye and
-    You, Zhao and Shang, Shidong and Gao, Yingming and Li, Ya},
-  year={2026}
-}</pre></aside></section>
+      <section id="method" class="method section-shell">
+        <div class="section-kicker"><span>02</span><p>Method</p></div>
+        <div class="method-heading"><h2>Event memory that changes<br />the next response.</h2><p>HERM stores completed interaction as structured events, reads it under the current condition, and controls which generated content becomes durable evidence.</p></div>
+        <figure class="method-figure"><img src="assets/herm-method-overview.png" alt="HERM overview and controlled history intervention from the paper" /><figcaption>Overview of HERM and its controlled history intervention.</figcaption></figure>
+        <div class="method-notes"><article><span>Event-structured memory</span><p>Recent chunks and event summaries retain interaction trajectories under a bounded storage budget.</p></article><article><span>Conditioned read</span><p>Audio, speaking/listening states, and recent motion select the evidence used for the next animation chunk.</p></article><article><span>Controlled write</span><p>Reliability-aware admission keeps generated history useful instead of letting errors accumulate over time.</p></article></div>
+      </section>
+      <section id="demos" class="demos section-shell">
+        <div class="demos-heading"><div><div class="section-kicker"><span>03</span><p>Comparison demos</p></div><h2>One interaction context.<br />Multiple visual responses.</h2></div><p>Each sequence pairs the interaction partner with model outputs. Scroll through the generated responses on the right under the same context.</p></div>
+        <div id="comparison-list" class="comparison-list" aria-live="polite"></div>
+      </section>
     </main>
-    <footer class="shell"><span>HERM · 2026</span><a href="https://github.com/Wx-Fu/HERM" target="_blank" rel="noreferrer">GitHub ↗</a></footer>
+    <footer class="section-shell"><span>HERM · 2026</span><a href="assets/HERM.pdf" target="_blank">Paper ↗</a><a href="https://github.com/Wx-Fu/HERM" target="_blank" rel="noreferrer">GitHub ↗</a></footer>
+    <script>
+      const modelNames = {'avatar_forcing.mp4':'Avatar Forcing','dystream.mp4':'DyStream','liveavatar.mp4':'LiveAvatar','omniavatar.mp4':'OmniAvatar','omniavatar_14b.mp4':'OmniAvatar-14B','stableavatar_fixed.mp4':'StableAvatar','herm.mp4':'HERM'};
+      const allModels = ['avatar_forcing.mp4','dystream.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4','herm.mp4'];
+      const sequences = [{id:'05',models:allModels},{id:'07',models:allModels},{id:'01',models:allModels},{id:'02',models:allModels},{id:'03',models:allModels},{id:'04',models:['liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4','herm.mp4']},{id:'06',models:['avatar_forcing.mp4','liveavatar.mp4','omniavatar.mp4','omniavatar_14b.mp4','stableavatar_fixed.mp4','herm.mp4']}];
+      const list = document.getElementById('comparison-list');
+      const playbackGroups = [];
+      const stopOtherGroups = (currentGroup) => {
+        playbackGroups.forEach((group) => {
+          if (group === currentGroup) return;
+          group.activeOutput = null;
+          group.partner.pause();
+          group.outputs.forEach((output) => { output.pause(); output.muted = true; });
+        });
+      };
+      sequences.forEach((sequence) => {
+        const folder = `assets/comparisons/sequence-${sequence.id}`;
+        const card = document.createElement('article'); card.className = 'sequence-card';
+        card.innerHTML = `<div class="sequence-meta"><span>Sequence ${sequence.id}</span><p>Shared interaction context</p></div><div class="sequence-layout"><figure class="partner-card"><div class="media-wrap"><video class="partner-video" controls loop playsinline preload="metadata" src="${folder}/partner.mp4"></video></div><figcaption><span>Input</span><strong>Interaction partner</strong></figcaption></figure><section class="output-card" aria-label="Generated responses for sequence ${sequence.id}"><div class="track-header"><span>Generated responses</span><small>scroll →</small></div><div class="model-track">${sequence.models.map((file) => `<figure class="model-slide ${file === 'herm.mp4' ? 'ours' : ''}"><div class="media-wrap"><video class="model-output" controls loop playsinline preload="metadata" src="${folder}/${file}"></video></div><figcaption><span>Output</span><strong>${modelNames[file]}</strong></figcaption></figure>`).join('')}</div></section></div>`;
+        const partner = card.querySelector('.partner-video');
+        const outputs = [...card.querySelectorAll('.model-output')];
+        const group = { partner, outputs, activeOutput: null };
+        playbackGroups.push(group);
+        const syncPartnerTime = (output) => {
+          if (Number.isFinite(output.currentTime) && Math.abs(partner.currentTime - output.currentTime) > 0.08) partner.currentTime = output.currentTime;
+        };
+        outputs.forEach((output) => {
+          output.muted = true;
+          output.addEventListener('play', () => {
+            group.activeOutput = output;
+            stopOtherGroups(group);
+            outputs.forEach((other) => { if (other !== output) { other.pause(); other.muted = true; } });
+            output.muted = false;
+            partner.muted = true;
+            syncPartnerTime(output);
+            partner.play().catch(() => {});
+          });
+          output.addEventListener('timeupdate', () => { if (group.activeOutput === output) syncPartnerTime(output); });
+          output.addEventListener('seeking', () => { if (group.activeOutput === output) syncPartnerTime(output); });
+          output.addEventListener('pause', () => { if (group.activeOutput === output && !output.ended) partner.pause(); });
+          output.addEventListener('ended', () => { if (group.activeOutput === output) partner.pause(); });
+        });
+        partner.addEventListener('play', () => stopOtherGroups(group));
+        list.appendChild(card);
+      });
+    </script>
   </body>
 </html>

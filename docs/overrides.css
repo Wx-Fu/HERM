@@ -1,0 +1,88 @@
+/* Focus the landing section on the paper title rather than a decorative diagram. */
+.hero {
+  grid-template-columns: 1fr;
+  min-height: 400px;
+  padding-top: 78px;
+  padding-bottom: 82px;
+}
+
+.hero-copy {
+  max-width: 900px;
+}
+
+.sequence-layout {
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 2px 10px;
+}
+
+.track-header span {
+  color: var(--ink);
+  font-size: .84rem;
+  font-weight: 800;
+}
+
+.track-header small {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: .68rem;
+}
+
+.model-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 1px 2px 12px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #aac5d5 transparent;
+}
+
+.model-slide {
+  flex: 0 0 clamp(185px, 30%, 245px);
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.model-slide .media-wrap {
+  aspect-ratio: 7 / 12;
+  max-height: 390px;
+}
+
+.model-slide figcaption {
+  border-top: 2px solid var(--teal);
+  padding-top: 9px;
+}
+
+.model-slide.ours figcaption {
+  border-top-color: var(--orange);
+}
+
+.model-slide.ours figcaption strong {
+  background: var(--orange);
+  border-radius: 999px;
+  color: #fff;
+  padding: 2px 9px;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: auto;
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+
+  .sequence-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .model-slide {
+    flex-basis: min(72vw, 270px);
+  }
+}
