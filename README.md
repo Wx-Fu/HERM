@@ -2,7 +2,7 @@
 
 # HERM: Hierarchical Event-Routed Memory for Context-Conditioned Interactive Avatar Generation
 
-Wenxin Fu, Zhengkun Tian, Ye Bai, Zhao You, Shidong Shang, Yingming Gao, Ya Li
+Wenxin Fu, Zhengkun Tian, Ye Bai, Zhao You, Yingming Gao, Ya Li
 
 [![Paper](https://img.shields.io/badge/Paper-PDF-1769AA?style=for-the-badge)](docs/assets/HERM.pdf)
 [![Project Page](https://img.shields.io/badge/Project-Page-128C91?style=for-the-badge)](https://wx-fu.github.io/HERM/)
