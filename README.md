@@ -4,7 +4,7 @@
 
 Wenxin Fu, Zhengkun Tian, Ye Bai, Ya Li
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-1769AA?style=for-the-badge)](docs/assets/HERM.pdf)
+[![Paper](https://img.shields.io/badge/Paper-PDF-1769AA?style=for-the-badge)](docs/assets/HERM_11241.pdf)
 [![Project Page](https://img.shields.io/badge/Project-Page-128C91?style=for-the-badge)](https://wx-fu.github.io/HERM/)
 
 </div>
